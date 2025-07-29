@@ -11,7 +11,8 @@ use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            "authenticated" => \App\Http\Middleware\ApiAuthenticate::class
+            "authenticated" => \App\Http\Middleware\ApiAuthenticate::class,
+            "admin" => \App\Http\Middleware\AdminOnly::class
         ]);
     })
     ->withRouting(

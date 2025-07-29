@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -46,6 +47,57 @@ class User extends Authenticatable implements JWTSubject
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Check if user is admin (id = 1)
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->id === 1;
+    }
+
+    /**
+     * Check if user is moderator
+     *
+     * @return bool
+     */
+    public function isModerator(): bool
+    {
+        return $this->role === 'moderator';
+    }
+
+    /**
+     * Check if user has admin privileges (id = 1 regardless of role field)
+     *
+     * @return bool
+     */
+    public function hasAdminPrivileges(): bool
+    {
+        return $this->id === 1;
+    }
+
+    /**
+     * Check if user can delete products
+     *
+     * @return bool
+     */
+    public function canDeleteProducts(): bool
+    {
+        return $this->hasAdminPrivileges();
+    }
+
+    /**
+     * Get user role display name
+     *
+     * @return string
+     */
+    public function getRoleDisplayName(): string
+    {
+        return $this->hasAdminPrivileges() ? 'Admin' : 'Moderator';
+    }
+    
     public function getJWTIdentifier()
     {
         return $this->getKey();

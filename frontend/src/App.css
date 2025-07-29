@@ -1,0 +1,141 @@
+
+body, .app {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: #222;
+  color: #fff;
+  padding: 10px 5vw;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav button {
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+nav button:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+}
+
+.auth-page, .products-page, .chatbot-page {
+  max-width: 95vw;
+  width: 100%;
+  margin: 32px auto;
+  background: #fff;
+  padding: 32px 5vw;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+.auth-page input, .products-page input, .products-page select, .chatbot-page input {
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+}
+
+.auth-page button, .products-page button, .chatbot-page button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+.auth-page button:hover, .products-page button:hover, .chatbot-page button:hover {
+  background: #1565c0;
+}
+
+.error {
+  color: #d32f2f;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.products-page ul {
+  list-style: none;
+  padding: 0;
+}
+.products-page li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  background: #f1f1f1;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+}
+.products-page img {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.chat-window {
+  background: #f1f1f1;
+  padding: 16px;
+  border-radius: 10px;
+  min-height: 120px;
+  margin-bottom: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.user-msg {
+  text-align: right;
+  color: #1976d2;
+  margin-bottom: 8px;
+}
+.bot-msg {
+  text-align: left;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+  .auth-page, .products-page, .chatbot-page {
+    padding: 16px 2vw;
+    margin: 16px auto;
+    border-radius: 8px;
+  }
+  nav {
+    padding: 10px 2vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .products-page li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+  .products-page img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+  }
+}

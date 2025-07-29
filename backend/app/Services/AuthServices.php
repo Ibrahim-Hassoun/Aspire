@@ -21,7 +21,16 @@ class AuthServices
        $token = auth('api')->login($user); 
 
         return [
-            'user' => $user,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->getRoleDisplayName(),
+                'is_admin' => $user->hasAdminPrivileges(),
+                'can_delete_products' => $user->canDeleteProducts(),
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at
+            ],
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
@@ -35,11 +44,22 @@ class AuthServices
             throw new \Exception('Invalid credentials');
         }
 
+        $user = auth('api')->user();
+
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'user' => auth('api')->user()
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->getRoleDisplayName(),
+                'is_admin' => $user->hasAdminPrivileges(),
+                'can_delete_products' => $user->canDeleteProducts(),
+                'created_at' => $user->created_at,
+                'updated_at' => $user->updated_at
+            ]
         ];
     }
 
@@ -60,7 +80,25 @@ class AuthServices
 
     public function profile()
     {
-        return auth()->user();
+        $user = auth()->user();
+        
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->getRoleDisplayName(),
+            'is_admin' => $user->hasAdminPrivileges(),
+            'can_delete_products' => $user->canDeleteProducts(),
+            'permissions' => [
+                'can_create_products' => true,
+                'can_view_products' => true,
+                'can_edit_products' => true,
+                'can_delete_products' => $user->canDeleteProducts(),
+                'can_view_statistics' => true,
+            ],
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at
+        ];
     }
 
 }
