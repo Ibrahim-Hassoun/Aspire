@@ -27,7 +27,7 @@ export default function App() {
   return (
     <div className="app">
       {page === 'auth' && <AuthPage onAuth={handleAuth} />}
-      {page !== 'auth' && (
+      {page !== 'auth' && token && (
         <>
           <nav>
             <button onClick={() => setPage('products')}>Products</button>

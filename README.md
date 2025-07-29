@@ -657,3 +657,86 @@ JWT_SECRET=your-jwt-secret
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📋 Stakeholder Testing Guide: How to Test the Website from A to Z
+
+This guide walks stakeholders through testing the Inventory Management System, covering authentication, product management, and chatbot features.
+
+### 1. Setup & Launch
+
+**Backend:**
+
+1. Open a terminal and run:
+   ```bash
+   cd backend
+   composer install
+   cp .env.example .env
+   php artisan key:generate
+   php artisan jwt:secret
+   php artisan migrate
+   php artisan serve
+   ```
+   The backend API will be available at `http://localhost:8000/api`.
+
+**Frontend:**
+
+1. Open a new terminal and run:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   The website will be available at `http://localhost:5173` (or as shown in your terminal).
+
+---
+
+### 2. Authentication (Login & Registration)
+
+1. Open the website in your browser.
+2. You will see the login/register page.
+3. Use seeded test accounts:
+   - **Admin:** `admin@email.com` / `password`
+   - **Moderator:** `moderator@email.com` / `password`
+4. You may also register a new account.
+5. After login, you will be taken directly to the Products section.
+
+---
+
+### 3. Products Section
+
+1. View the list of products, including images, categories, quantities, prices, and statuses.
+2. Use the search bar to filter products by name, category, or status.
+3. Add a new product using the form. Fill in all required fields and click "Add Product".
+4. Edit an existing product by clicking "Edit" next to it, updating the fields, and clicking "Update Product".
+5. (Admin only) Delete products by clicking "Delete" next to them.
+6. All changes are reflected instantly—no page refresh needed.
+
+---
+
+### 4. Chatbot Section
+
+1. Click the "Chatbot" button in the navigation bar.
+2. Ask inventory-related questions (e.g., "How many products are in stock?").
+3. The chatbot will respond in real time using the integrated AI backend.
+
+---
+
+### 5. Logout & Role Testing
+
+1. Click "Logout" in the navigation bar to end your session.
+2. Log in as different users to test role-based access (e.g., only admin can delete products).
+
+---
+
+### 6. Error Handling & Validation
+
+1. Try submitting invalid forms (e.g., missing required fields) to see error messages.
+2. Attempt unauthorized actions (e.g., deleting as non-admin) to verify access control.
+
+---
+
+### 7. Advanced API Testing (Optional)
+
+Refer to the API documentation below for direct API testing using tools like Postman.
+
+---
